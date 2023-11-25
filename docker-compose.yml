@@ -1,0 +1,28 @@
+version: '3'
+name: doan-shop
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - 1103:80
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/app
+      
+  php:
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    volumes:
+      - ./src:/app
+
+  db:
+    image: mariadb:latest
+    volumes:
+      - mariadb-vol:/var/lib/mysql
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=0
+      - MARIADB_ROOT_PASSWORD=CookieGMVN2007
+
+volumes:
+  mariadb-vol:

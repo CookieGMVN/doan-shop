@@ -51,10 +51,20 @@ $product = $sqlQuery->fetch_assoc();
                     <p style="color: black;"><?php echo $product["description"] ?></p>
                 </div>
                 <div class="mt-4">
-                    <form id="atc">
-                        <input type="number" placeholder="Số lượng" class="form-control" min="1" max="99" id="cart-quanity">
-                        <button class="btn btn-primary mt-2" type="submit">THÊM VÀO GIỎ HÀNG</button>
-                    </form>
+                    <?php
+                    if (!empty($_SESSION["user"])) {
+                    ?>
+                        <form id="atc">
+                            <input type="number" placeholder="Số lượng" class="form-control" min="1" max="99" id="cart-quanity">
+                            <button class="btn btn-primary mt-2" type="submit">THÊM VÀO GIỎ HÀNG</button>
+                        </form>
+                    <?php
+                    } else {
+                    ?>
+                        <button class="btn btn-primary mt-2" disabled>ĐĂNG NHẬP ĐỂ THÊM VÀO GIỎ HÀNG</button>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>

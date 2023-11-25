@@ -4,7 +4,7 @@ include "../../include/Shop.inc.php";
 $db = new DB();
 $res = new stdClass();
 
-if (empty($_POST["id"])) {
+if (empty($_POST["id"]) || empty($_SESSION["user"])) {
     $res->code = 400;
     $res->msg = "Invalid request.";
     die(json_encode($res));

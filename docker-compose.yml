@@ -24,5 +24,17 @@ services:
       - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=0
       - MARIADB_ROOT_PASSWORD=CookieGMVN2007
 
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    ports:
+      - 8918:80
+    links:
+      - db
+
 volumes:
   mariadb-vol:
